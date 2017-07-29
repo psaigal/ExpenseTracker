@@ -1,8 +1,11 @@
-var http = require('http');
+var express = require('express');
+var app = express();
+var port = 8888;
 
-http.createServer(function (request, response) {
-   response.writeHead(200, {'Content-Type': 'text/plain'});
-   response.end('Hello World\n');
-}).listen(8888);
+app.get('/', function (req, res, next) {
+ res.sendFile( __dirname + '/index.html');
+});
 
-console.log('Server running at http://127.0.0.1:8888/');
+app.listen(port, '0.0.0.0', function() {
+ console.log('Server running at port ' + port);
+});
