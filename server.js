@@ -8,6 +8,11 @@ var bodyParser = require('body-parser');
 var routes = require('./routes');
 var path = require('path');
 
+/*Body parser*/
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
 app.use('/', routes);
 
 app.listen(port, '0.0.0.0', function() {
@@ -15,15 +20,14 @@ app.listen(port, '0.0.0.0', function() {
 });
 
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '/views'));
 
 
-/*Body parser*/
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
 
 app.use(express.static(path.join(__dirname, 'views')));
+
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
 
 
