@@ -3,10 +3,15 @@ var app = express();
 var port = 8888;
 var db = require ('./db');
 var mongoose = require('mongoose'); 
-var models = require('./models/index')
+var models = require('./models/index');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
 var path = require('path');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 /*Body parser*/
 app.use(bodyParser.urlencoded({

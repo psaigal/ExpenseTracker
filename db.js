@@ -4,7 +4,7 @@ var db = mongoose.connect(mongoURI, function(err){
   if(err){
     console.log(err);
   } else{
-    console.log('In database!!!!!!');
+    console.log('In database!');
   }
 });
 
