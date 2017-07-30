@@ -4,6 +4,9 @@ var mongoose = require('mongoose');
 var models = require('../../models/index');
 var bcrypt = require('bcrypt-nodejs');
 var User = models.User;
+var expense = require('../expense')
+
+router.use('/:id/expense', expense)
 
 //CREATE NEW USER
 router.post('/', function (req, res, next) {

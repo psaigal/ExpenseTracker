@@ -6,8 +6,8 @@ var ExpenseSchema = new mongoose.Schema({
 	date: Date,
 	time: String,
 	amount: Number,
-	description: String
-     
+	description: String,
+	creator: {type: mongoose.Schema.Types.ObjectId, ref:'User'}
  });
 
 var Expense = mongoose.model('Expense', ExpenseSchema);

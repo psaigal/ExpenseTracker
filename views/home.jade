@@ -3,15 +3,18 @@ extends layout
 block content
 
 	h1 Welcome #{name}
-	p Generate a new expense report
-	button#myBtn Create A New Expense Report
+	.container
+		p Manage Your Expenses
+		button#myBtn Add A New Expense
+	.show-expenses
+		block append content
 
 
 	#myModal.modal
 		.modal-content
 			span.close ×
 			h2 Add Transaction Information
-			form(action='/action_page.php')
+			form(action='/user/#{id}/expense' method='post')
 				span.label Name
 				br
 				input(type='text', name='name')
