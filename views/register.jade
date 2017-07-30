@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+  h1 Register
+  form(action='/user', method='post')
+    | First Name
+    br
+    input(type='text', name='firstname')
+    br
+    | 		  Last Name
+    br
+    input(type='text', name='lastname')
+    br
+    | 		  Email
+    br
+    input(type='text', name='email')
+    br
+    | 		  Password
+    br
+    input(type='password', name='password')
+    br
+    input(type='submit', value='Submit')
+  p
+    | Already a user? Go 
+    a(href='/') here

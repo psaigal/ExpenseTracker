@@ -1,0 +1,37 @@
+extends layout
+
+block content
+
+	h1 Welcome #{name}
+	p Generate a new expense report
+	button#myBtn Create A New Expense Report
+
+
+	#myModal.modal
+		.modal-content
+			span.close ×
+			h2 Add Transaction Information
+			form(action='/action_page.php')
+				span.label Name
+				br
+				input(type='text', name='name')
+				br
+				span.label Date
+				br
+				input(type='text', name='date')
+				br
+				span.label Time
+				br
+				input(type='text', name='time')
+				br
+				span.label Amount
+				br
+				input(type='text', name='amount')
+				br
+				span.label Description
+				br
+				input(type='text', name='description')
+				br
+				br
+				input(type='submit', value='Submit')
+

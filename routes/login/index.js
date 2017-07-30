@@ -8,12 +8,14 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 router.get('/', function(req, res, next) {
-  res.render('login')
+	res.render('login')
 });
 
 router.post('/', passport.authenticate('local'), function (req, res, next) {
 	console.log(req.body);
-	res.redirect("home");
+	User.findById({ _id: req.user._id }, function(err, user) {
+		res.redirect('/user/' + req.user._id);
+    });
 });
 
 passport.use(new LocalStrategy(
@@ -23,10 +25,7 @@ passport.use(new LocalStrategy(
         User.findOne({ email: username }, function (err, user) {
         	console.log(user);
             if(user !== null) {
-            	console.log("12345");
-            	console.log(user);
                 var isPasswordCorrect = bcrypt.compareSync(password, user.password);
-                console.log(isPasswordCorrect);
                 if(isPasswordCorrect) {
                     console.log("Email and password correct!");
                     return done(null, user);

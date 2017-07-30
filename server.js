@@ -9,6 +9,14 @@ var routes = require('./routes');
 var path = require('path');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
+
+app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -18,32 +26,16 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.use(cookieParser());
+app.use(bodyParser());
+app.use(cookieSession({
+    name: 'session',
+    keys: ['key1', 'key2']
+}));
+
 app.use('/', routes);
 
 app.listen(port, '0.0.0.0', function() {
  console.log('Server running at port ' + port);
 });
 
-
-app.set('views', path.join(__dirname, '/views'));
-
-
-
-app.use(express.static(path.join(__dirname, 'views')));
-
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
-
-
-
-// app.get('/register', function (req, res, next) {
-//     res.sendFile( __dirname + '/register.html');
-// });
-
-// app.post('/register', function (req, res, next) {
-// 	console.log(req.body);
-//     console.log('firstname = ' + req.body.firstname);
-//     console.log('lastname = ' + req.body.lastname);
-//     console.log('email = ' + req.body.email);
-//     console.log('password = ' + req.body.password);
-// });
