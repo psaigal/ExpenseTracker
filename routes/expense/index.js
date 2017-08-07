@@ -21,8 +21,10 @@ router.post('/', function (req, res, next) {
 			  		Expense.findOne({ '_id': expense._id }).populate('creator').exec(function (err, expense) {
 					  if (err) return handleError(err);
 					});
-					res.render('home', {name: user.firstname, id: req.params.id});
-					// res.json(expense);
+					Expense.find({ creator : user._id }).exec(function (err, expenses) {
+					  if (err) return handleError(err);
+					  res.render('home', {name: user.firstname, id: req.params.id, expenses: expenses});
+					});
 				}
 			})
 		}
@@ -47,7 +49,7 @@ router.get('/', function (req, res, next) {
 			  if (err) return handleError(err);
 			  console.log(user);
 			  console.log("************");
-			  res.render('home', {name: user.firstname, id: req.params.id});
+			  res.render('home', {name: user.firstname, id: req.params.id, expenses: expenses});
 			});
 		}
 	});

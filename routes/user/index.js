@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var models = require('../../models/index');
 var bcrypt = require('bcrypt-nodejs');
 var User = models.User;
+var Expense = models.Expense;
 var expense = require('../expense')
 
 router.use('/:id/expense', expense)
@@ -63,7 +64,12 @@ router.get('/:id', function(req, res) {
 		} 
 		else {
 			console.log('GET Retrieving ID: ' + user._id);
-			res.render('home', {name: user.firstname, id: user._id})
+			Expense.find({ creator : user._id }).exec(function (err, expenses) {
+			  if (err) return handleError(err);
+			  console.log(user);
+			  console.log("************");
+			  res.render('home', {name: user.firstname, id: user._id, expenses: expenses});
+			});
 		}
     });
 });

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<% include layout %>
+	</head>
+	<body>
+	    <h1><%= name %>'s Expenses</h1>
+
+		<button id="myBtn">Add A New Expense</button>
+
+		<% include new-expense %>
+
+		<div>
+			<% include user-expenses %>
+		</div>
+
+	</body>
+</html>

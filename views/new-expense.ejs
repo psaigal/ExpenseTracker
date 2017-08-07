@@ -1,0 +1,24 @@
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form id="expenses-form" action="/user/<%= id %>/expense" method="post" >
+	  Name<br>
+	  <input type="text" name="name">
+	  <br>
+	  Date<br>
+	  <input type="text" name="date">
+	  <br>
+	  Time<br>
+	  <input type="text" name="time">
+	  <br>
+	  Amount<br>
+	  <input type="text" name="amount">
+	  <br>
+	  Description<br>
+	  <input type="text" name="description">
+	  <br>
+	  <br><br>
+	  <input type="submit" value="Submit">
+	</form> 
+  </div>
+</div>
